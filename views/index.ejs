@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pro GPT</title>
+    <link
+      rel="stylesheet"
+      href="https://bootswatch.com/5/flatly/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="text-center mb-3">Pro GPT</h1>
+      <p class="text-center mb-5">
+        This tool enables the transformation of plain language into language
+        that aligns with professional standards, lending a more polished and
+        refined tone to the resulting text.
+      </p>
+      <div class="row">
+        <div class="col-6">
+          <h3 class="text-center">Simple Text</h3>
+          <textarea
+            name="simpletext"
+            id="simpletext"
+            cols="30"
+            rows="10"
+            class="mb-3 form-control"
+            placeholder="Enter simple text here"
+          ></textarea
+          ><br />
+          <button
+            class="btn btn-primary form-control mb-3"
+            onclick="makeitpro()"
+          >
+            Make it pro
+          </button>
+        </div>
+        <div class="col-6">
+          <h3 class="text-center">Professional Text</h3>
+          <textarea
+            name="protext"
+            id="protext"
+            cols="30"
+            rows="10"
+            class="mb-3 form-control"
+            readonly
+            placeholder="Pro text will appear here"
+          ></textarea
+          ><br />
+        </div>
+      </div>
+    </div>
+    <script>
+      async function makeitpro() {
+        let simpletext = document.getElementById("simpletext").value;
+        document.getElementById("protext").value = "Loading..."; // show loading indicator
+
+        await fetch("/chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ content: simpletext }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            document.getElementById("protext").value = data.message;
+          })
+          .catch((err) => console.log(err));
+      }
+    </script>
+  </body>
+</html>
