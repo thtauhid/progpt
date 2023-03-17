@@ -5,7 +5,7 @@ This tool enables the transformation of plain language into language that aligns
 ## Installation
 
 1. Install [Node.js](https://nodejs.org/en/download/)
-1. Rename the .env.example file to .env
+1. Rename the .env.sample file to .env
 1. Add your API key to the .env file
 1. Run `npm install` in the root directory of the project
 1. Run `npm start` to start the server
