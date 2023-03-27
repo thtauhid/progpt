@@ -29,6 +29,24 @@ app.post("/chat", async (req, res) => {
   try {
     const { content } = req.body;
 
+    // Checks if user is trying to bypass the instructions
+    const restricted_words = [
+      "ignore",
+      "previous",
+      "instruction",
+      "instructions",
+    ]; // new words need to be added
+
+    const ignore =
+      restricted_words.filter((word) => content.includes(word)).length >= 2;
+
+    if (ignore) {
+      return res.json({
+        success: true,
+        message: "Thank you for using the app :)",
+      });
+    }
+
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [
