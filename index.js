@@ -35,6 +35,8 @@ app.post("/chat", async (req, res) => {
       "previous",
       "instruction",
       "instructions",
+      "prompts",
+      "prompt",
     ]; // new words need to be added
 
     const ignore =
