@@ -1,5 +1,7 @@
 ## About
 
+Currently in maintainance mode.
+
 This tool enables the transformation of plain language into language that aligns with professional standards, lending a more polished and refined tone to the resulting text.
 
 ## Installation
